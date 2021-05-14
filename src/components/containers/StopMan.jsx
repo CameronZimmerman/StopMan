@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import FetchForm from '../displays/FetchForm'
+import { getResponse } from '../../services/Api'
+import Display from '../displays/Display'
+import HistoryList from '../displays/HistoryList'
 export default class StopMan extends Component {
   state = {
     url: '',
     body: '',
     method: 'GET',
-    result: ''
+    result: '',
+    history: []
   }
 
   handleChange = (e) => {
@@ -13,13 +17,18 @@ export default class StopMan extends Component {
     console.log('whee')
   }
 
-  handleSubmit = (e) => {
-    console.log('yay' + e.target)
+  handleSubmit = async (e) => {
+    e.preventDefault()
+    const {method, body, url} = this.state
+    const result = await getResponse(method, body, url)
+    this.setState({result})
   }
   render() {
     return (
       <div>
         <FetchForm {...this.state} onSubmit={this.handleSubmit} onChange={this.handleChange}></FetchForm>
+        <HistoryList />
+        <Display result={this.state.result} />
       </div>
     )
   }
