@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 function HistoryList({historyList}) {
   return (
+    <>
+    History
     <ul>
       {
         historyList.map(history => (
@@ -12,6 +14,7 @@ function HistoryList({historyList}) {
         ))
       }
     </ul>
+    </>
   )
 }
 
