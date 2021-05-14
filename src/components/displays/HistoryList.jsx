@@ -6,7 +6,7 @@ function HistoryList({historyList}) {
     <ul>
       {
         historyList.map(history => (
-          <li>
+          <li key={history.timeCreated}>
             <p><span style={{color: 'red'}}>{history.method}</span> {history.url}</p>
           </li>
         ))
@@ -19,6 +19,7 @@ HistoryList.propTypes = {
   historList: PropTypes.arrayOf(PropTypes.shape({
     method: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
+    timeCreated: PropTypes.number.isRequired
   }))
 }
 

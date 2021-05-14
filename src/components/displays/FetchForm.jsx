@@ -16,7 +16,7 @@ function FetchForm({method, url, body, onChange, onSubmit}) {
           <input type="radio" checked={method === "PUT"} value="PUT" name="method"/> PUT
         </div>
         <label htmlFor="body" >
-          <textarea id="body" name="body" rows="4" cols="50" value={body} onChange={event => onChange(event)}></textarea>
+          <textarea id="body" name="body" rows="4" cols="50" value={body} onChange={event => onChange(event)} placeholder="Post/Put body"></textarea>
         </label>
       </form>
     </>

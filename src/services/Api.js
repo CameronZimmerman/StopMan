@@ -2,7 +2,7 @@ export const getResponse = async (method, body = "", url = "") => {
   const MethodsWithBody = ['POST', 'PUT']
   const response = await fetch(url, {
     method,
-    body: MethodsWithBody.includes(method)? body : null,
+    body: MethodsWithBody.includes(method)? body: null,
     headers: {'Content-Type': 'application/json'}
   })
   const json = await response.json();

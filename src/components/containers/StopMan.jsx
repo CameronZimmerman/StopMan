@@ -19,16 +19,22 @@ export default class StopMan extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    const {method, body, url} = this.state
+    const {method, body, url, history} = this.state
+
     const result = await getResponse(method, body, url)
-    this.setState({result})
+    history.push({
+      url,
+      method,
+      timeCreated: new Date().getTime()
+    })
+    this.setState({result, history})
   }
   render() {
     return (
       <div>
         <FetchForm {...this.state} onSubmit={this.handleSubmit} onChange={this.handleChange}></FetchForm>
-        <HistoryList />
         <Display result={this.state.result} />
+        <HistoryList historyList={this.state.history}/>
       </div>
     )
   }
